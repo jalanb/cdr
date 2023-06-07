@@ -3,7 +3,10 @@ build-backend = "hatchling.build"
 requires = ["hatchling"]
 
 [project]
-authors = [{name = "Justin Flannery", email = "justin.flannery@juftin.com"}]
+authors = [
+  {name = "Justin Flannery", email = "justin.flannery@juftin.com"},
+  {name = "jalanb", email = "jalanb@al-got-rhythm.net"},
+]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
@@ -26,11 +29,11 @@ dependencies = [
   "Pillow>=9.1.0",
   "PyMuPDF~=1.22.3"
 ]
-description = "TUI File Browser App"
+description = "a chatty cd"
 dynamic = ["version"]
 keywords = []
 license = "MIT"
-name = "browsr"
+name = "cdr"
 readme = "README.md"
 requires-python = ">=3.8,<4.0"
 
@@ -43,6 +46,7 @@ all = [
   "adlfs~=2023.1.0",
   "aiohttp~=3.8.3",
   "paramiko~=3.1.0"
+  "pysyte~=3.7.0"
 ]
 parquet = [
   "pyarrow~=10.0.0"
@@ -57,12 +61,12 @@ remote = [
 ]
 
 [project.scripts]
-browsr = "browsr.__main__:browsr"
+cdr = "cdr.__main__:cdr"
 
 [project.urls]
-Documentation = "https://github.com/juftin/browsr#readme"
-Issues = "https://github.com/juftin/browsr/issues"
-Source = "https://github.com/juftin/browsr"
+Documentation = "https://github.com/jalanb/cdr#readme"
+Issues = "https://github.com/jalanb/cdr/issues"
+Source = "https://github.com/jalanb/cdr"
 
 [tool.coverage.report]
 exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
@@ -103,7 +107,7 @@ GITHUB_TOKEN = "{env:GITHUB_TOKEN:placeholder}"
 _pip_compile = "pip-compile --resolver=backtracking --generate-hashes requirements.in"
 all = ["format", "lint", "check", "test"]
 check = [
-  "mypy --install-types --strict-optional --non-interactive {args:browsr/ tests/}"
+  "mypy --install-types --strict-optional --non-interactive {args:cdr/ tests/}"
 ]
 docs-build = ["mkdocs build --clean --strict"]
 docs-deploy = ["mkdocs gh-deploy {args:}"]
@@ -128,7 +132,7 @@ semantic-release = [
   "npm install --prefix .github/semantic_release/",
   "npx --prefix .github/semantic_release/ semantic-release {args:}"
 ]
-test = "pytest --cov=browsr --cov-report={env:COVERAGE_REPORT:term-missing} --cov-config=pyproject.toml {args:tests/}"
+test = "pytest --cov=cdr --cov-report={env:COVERAGE_REPORT:term-missing} --cov-config=pyproject.toml {args:tests/}"
 
 [[tool.hatch.envs.test.matrix]]
 python = ["3.8", "3.9", "3.10", "3.11"]
@@ -137,7 +141,7 @@ python = ["3.8", "3.9", "3.10", "3.11"]
 matrix = "test"
 
 [tool.hatch.version]
-path = "browsr/_version.py"
+path = "cdr/_version.py"
 
 [tool.mypy]
 check_untyped_defs = true
